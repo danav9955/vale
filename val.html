@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>For My Valentine ❤️</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg1: #ffd6e7;
+      --bg2: #ffeef6;
+      --card: #ffffffcc;
+      --yes: #ff3b7a;
+      --yesHover: #ff1f68;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+      font-family: 'Quicksand', sans-serif;
+      overflow: hidden;
+      padding: 16px;
+    }
+
+    /* Page Transitions */
+    .page { display: none; transform: scale(0.9); opacity: 0; transition: all 0.4s ease-in-out; }
+    .page.active { display: block; transform: scale(1); opacity: 1; }
+
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .card {
+      width: min(720px, 92vw);
+      padding: 26px 22px;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 18px 60px rgba(0,0,0,.15);
+    }
+
+    .art {
+      width: min(200px, 60vw);
+      margin: 0 auto 10px;
+      display: block;
+      filter: drop-shadow(0 10px 14px rgba(0,0,0,.12));
+    }
+
+    /* Running Button Zone */
+    .button-zone {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      margin: 0 auto;
+      touch-action: none;
+    }
+
+    .run-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 12px 24px;
+      font-size: 18px;
+      font-weight: 800;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,.14);
+      transition: transform .12s ease, background .12s ease;
+    }
+
+    #yesBtn { left: 15%; background: var(--yes); color: #fff; }
+    #noBtn { left: 60%; background: #e5e7eb; color: #111827; }
+
+    .gift-box { background: white; border-radius: 1rem; padding: 1.5rem; border: 2px solid #ffebf0; cursor: pointer; transition: transform 0.2s; }
+    .gift-box:hover { transform: translateY(-5px); border-color: #ff4d6d; }
+    
+    .letter-box { max-height: 250px; overflow-y: auto; scrollbar-width: none; border-radius: 1rem; }
+    .letter-box::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+
+<body>
+  <canvas id="confettiCanvas"></canvas>
+
+  <main class="card">
+    <div id="page1" class="page active">
+        <svg class="art" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+            <path d="M250 50 C250 33 270 25 282 38 C294 25 314 33 314 50 C314 78 282 92 282 106 C282 92 250 78 250 50Z" fill="#ff4d7d"/>
+            <path d="M90 120 C90 70 140 40 190 60 C240 40 290 70 290 120 C290 180 240 210 190 210 C140 210 90 180 90 120Z" fill="#f2a97b"/>
+            <circle cx="160" cy="130" r="8"/><circle cx="220" cy="130" r="8"/>
+        </svg>
+        <h1 class="text-2xl font-bold mb-4">Nirali, will you be my valentine?</h1>
+        <section class="button-zone" id="zone">
+            <button id="yesBtn" class="run-btn">Yes</button>
+            <button id="noBtn" class="run-btn">No</button>
+        </section>
+        <p class="text-xs opacity-50 mt-4">“No” seems a bit shy 😈</p>
+    </div>
+
+    <div id="page2" class="page">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXN6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6JmVuPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/Z_m_X_O-v_YAAAAi/tkthao219-bubududu.gif" class="h-28 mx-auto mb-4">
+        <h2 class="text-xl font-bold text-[#ff4d6d] mb-4 text-center">Happy Valentine's Day! 💖</h2>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="gift-box" onclick="nextPage(3)">
+                <span class="text-3xl">💌</span>
+                <p class="text-xs mt-2 font-bold">Letter</p>
+            </div>
+            <div class="gift-box" onclick="nextPage(4)">
+                <span class="text-3xl">🎁</span>
+                <p class="text-xs mt-2 font-bold">Gift</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="page3" class="page">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueXFpZ3R4bmR4bmR4bmR4bmR4bmR4bmR4bmR4bmR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/vV_ZpIisWpIAAAAi/giphy.gif" class="h-24 mx-auto mb-4">
+        <h2 class="text-xl font-bold text-[#ff4d6d] mb-4">For You, Nirali 🥺</h2>
+        <div class="letter-box bg-white p-6 rounded-2xl text-[11px] text-left text-gray-600 italic shadow-inner h-48 overflow-y-auto leading-relaxed">
+            Hey Nirali,<br><br>
+            I don’t think words will ever be enough to explain how much you mean to me. Since you came into my life, everything started feeling warmer and more beautiful.<br><br>
+            You’re my safe place and my favorite thought. My heart is yours—today, tomorrow, and always.<br><br>
+            Forever yours, ❤️
+        </div>
+        <button onclick="nextPage(2)" class="mt-4 bg-[#ffb3c1] text-white px-6 py-2 rounded-full text-xs font-bold">BACK</button>
+    </div>
+
+    <div id="page4" class="page">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueXFpZ3R4bmR4bmR4bmR4bmR4bmR4bmR4bmR4bmR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/T_G8-39rX6oAAAAi/bear-cute.gif" class="h-24 mx-auto mb-4">
+        <h2 class="text-xl font-bold text-[#ff4d6d] mb-2 text-center">Unlock Your Gift! 🔐</h2>
+        <div class="space-y-3 text-left py-4">
+            <p class="text-[11px] font-bold text-gray-600">When did we start dating? 👑</p>
+            <button onclick="winGift()" class="w-full text-left p-3 rounded-xl border-2 border-white bg-white text-[10px] hover:border-pink-300">08/09/23</button>
+            <button onclick="alert('Wrong date! ❤️')" class="w-full text-left p-3 rounded-xl border-2 border-white bg-white text-[10px] hover:border-pink-300">08/10/23</button>
+            <button onclick="alert('Close, but no! ❤️')" class="w-full text-left p-3 rounded-xl border-2 border-white bg-white text-[10px] hover:border-pink-300">22/06/23</button>
+        </div>
+        <button onclick="nextPage(2)" class="mt-4 bg-[#ffb3c1] text-white px-6 py-2 rounded-full text-xs font-bold">BACK</button>
+    </div>
+
+    <div id="page5" class="page">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueXFpZ3R4bmR4bmR4bmR4bmR4bmR4bmR4bmR4bmR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/YpsX6qW6e84AAAAi/giphy.gif" class="h-32 mx-auto mb-4">
+        <h2 class="text-2xl font-bold text-[#ff4d6d] mb-2">You Won! 🏆</h2>
+        <p class="text-gray-600 text-sm mb-6">A gift for someone who makes time stop.</p>
+        <a href="https://www.myntra.com/watches/michael+kors/michael-kors-pyper-women-white-analogue-watch-mk2741/7371099/buy" target="_blank" class="inline-block bg-[#ff4d6d] text-white px-8 py-4 rounded-3xl font-bold shadow-lg hover:bg-[#ff758c] transition-all transform hover:scale-105">
+            VIEW MY GIFT ⌚
+        </a>
+        <br>
+        <button onclick="nextPage(2)" class="mt-8 bg-[#ffb3c1] text-white px-6 py-2 rounded-full text-xs font-bold">BACK</button>
+    </div>
+  </main>
+
+  <script>
+    const zone = document.getElementById("zone");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    /* PAGE NAVIGATION */
+    function nextPage(num) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        setTimeout(() => {
+            const target = document.getElementById('page' + num);
+            if (target) target.classList.add('active');
+        }, 50);
+    }
+
+    /* CONFETTI SETUP */
+    const confettiCanvas = document.getElementById("confettiCanvas");
+    function resizeCanvas() {
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    function celebrate() {
+        const end = Date.now() + 1000;
+        (function frame() {
+            confetti({ particleCount: 7, spread: 90, origin: { x: Math.random(), y: Math.random() * 0.3 } });
+            if (Date.now() < end) requestAnimationFrame(frame);
+        }());
+    }
+
+    /* BUTTON INTERACTION LOGIC */
+    let yesScale = 1;
+    function growYes() {
+        yesScale = Math.min(2.2, yesScale + 0.1);
+        yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`;
+    }
+
+    zone.addEventListener("pointermove", e => {
+        const b = noBtn.getBoundingClientRect();
+        const d = Math.hypot((b.left + b.width/2) - e.clientX, (b.top + b.height/2) - e.clientY);
+        
+        // If the cursor gets within 100px of the "No" button, it moves and "Yes" grows
+        if (d < 100) {
+            const z = zone.getBoundingClientRect();
+            noBtn.style.left = Math.random() * (z.width - b.width) + "px";
+            noBtn.style.top = Math.random() * (z.height - b.height) + "px";
+            noBtn.style.transform = "none";
+            growYes();
+        }
+    });
+
+    /* BUTTON CLICKS */
+    yesBtn.addEventListener("click", () => {
+        celebrate();
+        nextPage(2);
+    });
+
+    function winGift() {
+        confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+        setTimeout(() => { nextPage(5); }, 500);
+    }
+  </script>
+</body>
+</html>
