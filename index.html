@@ -4,102 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>For My Valentine ❤️</title>
-
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --bg1: #ffd6e7;
-      --bg2: #ffeef6;
-      --card: #ffffffcc;
-      --yes: #ff3b7a;
-      --yesHover: #ff1f68;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100svh;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle at top, var(--bg2), var(--bg1));
-      font-family: 'Quicksand', sans-serif;
-      overflow-x: hidden;
-      padding: 16px;
-    }
-
+    :root { --bg1: #ffd6e7; --bg2: #ffeef6; --card: #ffffffcc; --yes: #ff3b7a; --yesHover: #ff1f68; }
+    body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: radial-gradient(circle at top, var(--bg2), var(--bg1)); font-family: 'Quicksand', sans-serif; overflow-x: hidden; padding: 16px; }
     .page { display: none; transform: scale(0.9); opacity: 0; transition: all 0.4s ease-in-out; }
     .page.active { display: block; transform: scale(1); opacity: 1; }
-
-    #confettiCanvas {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    .card {
-      width: min(720px, 92vw);
-      padding: 26px 22px;
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      border-radius: 22px;
-      text-align: center;
-      box-shadow: 0 18px 60px rgba(0,0,0,.15);
-    }
-
-    .img-main {
-      height: 160px;
-      width: 160px;
-      object-fit: cover;
-      margin: 0 auto 1rem auto;
-      border-radius: 1.5rem;
-      border: 4px solid white;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .button-zone {
-      position: relative;
-      width: 100%;
-      height: 150px;
-      margin: 0 auto;
-      touch-action: none;
-    }
-
-    .run-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 12px 24px;
-      font-size: 18px;
-      font-weight: 800;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 10px 24px rgba(0,0,0,.14);
-      transition: transform .12s ease;
-    }
-
+    #confettiCanvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; }
+    .card { width: min(720px, 92vw); padding: 26px 22px; background: var(--card); backdrop-filter: blur(10px); border-radius: 22px; text-align: center; box-shadow: 0 18px 60px rgba(0,0,0,.15); }
+    .img-main { height: 160px; width: 160px; object-fit: cover; margin: 0 auto 1rem auto; border-radius: 1.5rem; border: 4px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .button-zone { position: relative; width: 100%; height: 150px; margin: 0 auto; touch-action: none; }
+    .run-btn { position: absolute; top: 50%; transform: translateY(-50%); padding: 12px 24px; font-size: 18px; font-weight: 800; border-radius: 999px; border: none; cursor: pointer; box-shadow: 0 10px 24px rgba(0,0,0,.14); transition: transform .12s ease; }
     #yesBtn { left: 15%; background: var(--yes); color: #fff; }
     #noBtn { left: 60%; background: #e5e7eb; color: #111827; }
-
     .gift-box { background: white; border-radius: 1rem; padding: 1.5rem; border: 2px solid #ffebf0; cursor: pointer; transition: transform 0.2s; }
     .gift-box:hover { transform: translateY(-5px); border-color: #ff4d6d; }
-    
     .letter-box { max-height: 250px; overflow-y: auto; scrollbar-width: none; border-radius: 1rem; }
     .letter-box::-webkit-scrollbar { display: none; }
   </style>
 </head>
-
 <body>
   <canvas id="confettiCanvas"></canvas>
-
   <main class="card">
     <div id="page1" class="page active">
-        <img src="https://i.postimg.cc/85zXqz9z/bubu-dudu.gif" class="img-main" alt="Bubu Waving">
+        <div class="img-main flex items-center justify-center bg-pink-100 text-5xl">❤️</div>
         <h1 class="text-2xl font-bold mb-4">Nirali, will you be my valentine?</h1>
         <section class="button-zone" id="zone">
             <button id="yesBtn" class="run-btn">Yes</button>
@@ -109,7 +39,7 @@
     </div>
 
     <div id="page2" class="page">
-        <img src="https://i.postimg.cc/Z_m_X_O-v_Y/tkthao219-bubududu.gif" class="img-main">
+        <div class="img-main flex items-center justify-center bg-pink-100 text-5xl">🎁</div>
         <h2 class="text-xl font-bold text-[#ff4d6d] mb-4 text-center">Happy Valentine's Day! 💖</h2>
         <div class="grid grid-cols-2 gap-4 mb-4">
             <div class="gift-box" onclick="nextPage(3)">
@@ -124,7 +54,6 @@
     </div>
 
     <div id="page3" class="page">
-        <img src="https://images.unsplash.com/photo-1518568814520-af0a3d96530e?w=400" class="img-main">
         <h2 class="text-xl font-bold text-[#ff4d6d] mb-4">For You, Nirali 🥺</h2>
         <div class="letter-box bg-white p-6 rounded-2xl text-[11px] text-left text-gray-600 italic shadow-inner h-48 overflow-y-auto leading-relaxed">
             Hey Nirali,<br><br>
@@ -136,7 +65,6 @@
     </div>
 
     <div id="page4" class="page">
-        <img src="https://i.postimg.cc/9f1T1y7r/sad-bear.gif" class="img-main">
         <h2 class="text-xl font-bold text-[#ff4d6d] mb-2 text-center">Unlock Your Gift! 🔐</h2>
         <div class="space-y-3 text-left py-4">
             <p class="text-[11px] font-bold text-gray-600">When did we start dating? 👑</p>
@@ -148,7 +76,6 @@
     </div>
 
     <div id="page5" class="page">
-        <img src="https://i.postimg.cc/L5n6yYy0/celebrate.gif" class="img-main">
         <h2 class="text-2xl font-bold text-[#ff4d6d] mb-2">You Won! 🏆</h2>
         <p class="text-gray-600 text-sm mb-6">A gift for someone who makes time stop.</p>
         <a href="https://www.myntra.com/watches/michael+kors/michael-kors-pyper-women-white-analogue-watch-mk2741/7371099/buy" target="_blank" class="inline-block bg-[#ff4d6d] text-white px-8 py-4 rounded-3xl font-bold shadow-lg hover:bg-[#ff758c] transition-all transform hover:scale-105">
@@ -163,37 +90,14 @@
     const zone = document.getElementById("zone");
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
-
-    function nextPage(num) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        setTimeout(() => {
-            const target = document.getElementById('page' + num);
-            if (target) target.classList.add('active');
-        }, 50);
-    }
-
+    function nextPage(num) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); setTimeout(() => { document.getElementById('page' + num).classList.add('active'); }, 50); }
     const confettiCanvas = document.getElementById("confettiCanvas");
-    function resizeCanvas() {
-        confettiCanvas.width = window.innerWidth;
-        confettiCanvas.height = window.innerHeight;
-    }
+    function resizeCanvas() { confettiCanvas.width = window.innerWidth; confettiCanvas.height = window.innerHeight; }
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
-
-    function celebrate() {
-        const end = Date.now() + 1000;
-        (function frame() {
-            confetti({ particleCount: 7, spread: 90, origin: { x: Math.random(), y: Math.random() * 0.3 } });
-            if (Date.now() < end) requestAnimationFrame(frame);
-        }());
-    }
-
+    function celebrate() { const end = Date.now() + 1000; (function frame() { confetti({ particleCount: 7, spread: 90, origin: { x: Math.random(), y: Math.random() * 0.3 } }); if (Date.now() < end) requestAnimationFrame(frame); }()); }
     let yesScale = 1;
-    function growYes() {
-        yesScale = Math.min(2.2, yesScale + 0.1);
-        yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`;
-    }
-
+    function growYes() { yesScale = Math.min(2.2, yesScale + 0.1); yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`; }
     zone.addEventListener("pointermove", e => {
         const b = noBtn.getBoundingClientRect();
         const d = Math.hypot((b.left + b.width/2) - e.clientX, (b.top + b.height/2) - e.clientY);
@@ -205,16 +109,8 @@
             growYes();
         }
     });
-
-    yesBtn.addEventListener("click", () => {
-        celebrate();
-        nextPage(2);
-    });
-
-    function winGift() {
-        confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
-        setTimeout(() => { nextPage(5); }, 500);
-    }
+    yesBtn.addEventListener("click", () => { celebrate(); nextPage(2); });
+    function winGift() { confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } }); setTimeout(() => { nextPage(5); }, 500); }
   </script>
 </body>
 </html>
