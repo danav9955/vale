@@ -99,7 +99,7 @@
 
   <main class="card">
     <div id="page1" class="page active">
-        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXN6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6JmVuPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/6X7997IdY7kAAAAi/bubu-dudu-sseeyall.gif" class="img-main" alt="Bubu Waving">
+        <img src="https://i.postimg.cc/85zXqz9z/bubu-dudu.gif" class="img-main" alt="Bubu Waving">
         <h1 class="text-2xl font-bold mb-4">Nirali, will you be my valentine?</h1>
         <section class="button-zone" id="zone">
             <button id="yesBtn" class="run-btn">Yes</button>
@@ -109,7 +109,7 @@
     </div>
 
     <div id="page2" class="page">
-        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXN6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6cXp6JmVuPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/Z_m_X_O-v_YAAAAi/tkthao219-bubududu.gif" class="img-main">
+        <img src="https://i.postimg.cc/Z_m_X_O-v_Y/tkthao219-bubududu.gif" class="img-main">
         <h2 class="text-xl font-bold text-[#ff4d6d] mb-4 text-center">Happy Valentine's Day! 💖</h2>
         <div class="grid grid-cols-2 gap-4 mb-4">
             <div class="gift-box" onclick="nextPage(3)">
@@ -136,7 +136,7 @@
     </div>
 
     <div id="page4" class="page">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueXFpZ3R4bmR4bmR4bmR4bmR4bmR4bmR4bmR4bmR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/T_G8-39rX6oAAAAi/bear-cute.gif" class="img-main">
+        <img src="https://i.postimg.cc/9f1T1y7r/sad-bear.gif" class="img-main">
         <h2 class="text-xl font-bold text-[#ff4d6d] mb-2 text-center">Unlock Your Gift! 🔐</h2>
         <div class="space-y-3 text-left py-4">
             <p class="text-[11px] font-bold text-gray-600">When did we start dating? 👑</p>
@@ -148,7 +148,7 @@
     </div>
 
     <div id="page5" class="page">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueXFpZ3R4bmR4bmR4bmR4bmR4bmR4bmR4bmR4bmR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/YpsX6qW6e84AAAAi/giphy.gif" class="img-main">
+        <img src="https://i.postimg.cc/L5n6yYy0/celebrate.gif" class="img-main">
         <h2 class="text-2xl font-bold text-[#ff4d6d] mb-2">You Won! 🏆</h2>
         <p class="text-gray-600 text-sm mb-6">A gift for someone who makes time stop.</p>
         <a href="https://www.myntra.com/watches/michael+kors/michael-kors-pyper-women-white-analogue-watch-mk2741/7371099/buy" target="_blank" class="inline-block bg-[#ff4d6d] text-white px-8 py-4 rounded-3xl font-bold shadow-lg hover:bg-[#ff758c] transition-all transform hover:scale-105">
@@ -189,6 +189,11 @@
     }
 
     let yesScale = 1;
+    function growYes() {
+        yesScale = Math.min(2.2, yesScale + 0.1);
+        yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`;
+    }
+
     zone.addEventListener("pointermove", e => {
         const b = noBtn.getBoundingClientRect();
         const d = Math.hypot((b.left + b.width/2) - e.clientX, (b.top + b.height/2) - e.clientY);
@@ -197,8 +202,7 @@
             noBtn.style.left = Math.random() * (z.width - b.width) + "px";
             noBtn.style.top = Math.random() * (z.height - b.height) + "px";
             noBtn.style.transform = "none";
-            yesScale = Math.min(2.2, yesScale + 0.1);
-            yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`;
+            growYes();
         }
     });
 
